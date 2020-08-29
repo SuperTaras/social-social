@@ -1,0 +1,8 @@
+.Nav {
+    grid-area: N;
+    background-color: burlywood;
+}
+
+.item {
+    color: white;
+}
