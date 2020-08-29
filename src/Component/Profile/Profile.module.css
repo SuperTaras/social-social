@@ -1,11 +1,5 @@
-
 .content {
     grid-area: C;
     background-color: blue;
 }
-
-.item {
-    color: yellow;
-}
-
 
