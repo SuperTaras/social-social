@@ -6,7 +6,8 @@ import {Post} from "./Post/Post";
 
 
 
-const MyPosts = () => {
+
+const MyPosts = (props:any) => {
     return <div>
         MyPost
         <div>
@@ -14,7 +15,8 @@ const MyPosts = () => {
             <button>Add Post</button>
         </div>
         <div className={st.posts}>
-            <Post/>
+            <Post message = "Love dogs" likesCount ='0'/>
+            <Post message='It s my first post' likesCount ='23' />
         </div>
     </div>
 
