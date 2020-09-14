@@ -1,19 +1,25 @@
 import React from 'react';
 import st from './Profile.module.css' ;
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts  from "./MyPosts/MyPosts";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+
+
+
+
 
 
 
 export const Profile = () => {
+
+    let postsData = [
+        {id: 1, message: 'Love dogs' , likesCount:0},
+        {id: 2, message: 'It s my first post', likesCount:23},
+    ]
+
     return <div>
-        <div>
-            <img src='https://cdn.sandals.com/sandals/v12/images/resorts/srb/private-island/island.jpg' width='1000px'/>
-        </div>
-        <div>
-            ava+descr
-        </div>
-        <MyPosts/>
-</div>
+        <ProfileInfo/>
+        <MyPosts postsData={postsData} />
+    </div>
 }
 
 

@@ -3,23 +3,35 @@ import st from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
 
+export type MyPostsPropsType = {
+    postsData: Array<{ id: number, message: string, likesCount: number }>
+}
 
 
+const MyPosts = (props: MyPostsPropsType) => {
 
 
-const MyPosts = (props:any) => {
-    return <div>
-        MyPost
-        <div>
-            <textarea></textarea>
-            <button>Add Post</button>
+    let postElement = props.postsData.map(Po =>
+        <Post message={Po.message} likesCount={Po.likesCount}/>)
+
+
+    return (
+        <div className={st.postsBlock}>
+            <h3>MyPost</h3>
+            <div>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add Post</button>
+                </div>
+            </div>
+            <div className={st.posts}>
+                {postElement}
+
+            </div>
         </div>
-        <div className={st.posts}>
-            <Post message = "Love dogs" likesCount ='0'/>
-            <Post message='It s my first post' likesCount ='23' />
-        </div>
-    </div>
-
+    )
 }
 
 
