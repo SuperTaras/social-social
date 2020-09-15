@@ -11,7 +11,7 @@ export const ProfileInfo = () => {
         <div>
             <div>
                 <img src='https://cdn.sandals.com/sandals/v12/images/resorts/srb/private-island/island.jpg'
-                     width='1000px'/>
+                     width='1300px'/>
             </div>
             <div className={st.descriptionBlock}>
                 ava+descr

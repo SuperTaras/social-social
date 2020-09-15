@@ -8,6 +8,9 @@ export type MyPostsPropsType = {
 }
 
 
+
+
+
 const MyPosts = (props: MyPostsPropsType) => {
 
 

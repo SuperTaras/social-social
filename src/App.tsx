@@ -7,19 +7,32 @@ import Dialogs from "./Component/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
 
 
+export type StatePropsType = {
+    postsData: Array<{ id: number, message: string, likesCount: number }>
+    dialogsData: Array<{ id: number, name: string }>
+    messagesData: Array<{ id: number, message: string }>
+
+}
 
 
 
+const App = (props: StatePropsType) => {
 
-const App = () => {
+
+    let SomeRenderDialog = () => <Dialogs dialogsData={props.dialogsData}
+                                          messagesData={props.messagesData}/>
+
+    let SomeRenderProfile = () => <Profile postsData={props.postsData}/>
+
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path ='/Dialogs' component={Dialogs}/>
-                    <Route path ='/Profile' render={() => <Profile />}/>
+                    <Route path='/Dialogs' render={SomeRenderDialog}/>
+                    <Route path='/Profile' render={SomeRenderProfile}/>
                 </div>
             </div>
         </BrowserRouter>
