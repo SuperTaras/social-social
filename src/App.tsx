@@ -5,24 +5,19 @@ import Navbar from './Component/Navbar/Navbar';
 import {Profile} from './Component/Profile/Profile';
 import Dialogs from "./Component/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
+import {StateType} from "./Redux/State";
 
 
 export type StatePropsType = {
-    postsData: Array<{ id: number, message: string, likesCount: number }>
-    dialogsData: Array<{ id: number, name: string }>
-    messagesData: Array<{ id: number, message: string }>
-
+    appState: StateType
 }
-
 
 
 const App = (props: StatePropsType) => {
 
 
-    let SomeRenderDialog = () => <Dialogs dialogsData={props.dialogsData}
-                                          messagesData={props.messagesData}/>
-
-    let SomeRenderProfile = () => <Profile postsData={props.postsData}/>
+    let SomeRenderDialog = () => <Dialogs state={props.appState} />
+    let SomeRenderProfile = () => <Profile state={props.appState} />
 
 
     return (
