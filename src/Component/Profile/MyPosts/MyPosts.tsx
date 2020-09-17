@@ -5,8 +5,9 @@ import {Post} from "./Post/Post";
 
 export type MyPostsPropsType = {
     postsData: Array<{ id: number, message: string, likesCount: number }>
-}
+    addPost: (postText:string) =>void
 
+}
 
 
 
@@ -17,16 +18,13 @@ const MyPosts = (props: MyPostsPropsType) => {
         <Post message={Po.message} likesCount={Po.likesCount}/>)
 
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
 
-    let addPost =() => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            alert(text)
-        }
+    let addPost = () => {
+         if(newPostElement.current)
+         props.addPost(newPostElement.current.value);
     }
-
-    let newPostElement:any = React.createRef();
 
 
     return (

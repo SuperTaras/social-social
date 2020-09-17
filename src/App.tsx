@@ -8,16 +8,21 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {StateType} from "./Redux/State";
 
 
+
 export type StatePropsType = {
-    appState: StateType
+     appState: StateType
+     addPost: (message:string) => void
+
 }
 
 
 const App = (props: StatePropsType) => {
 
 
-    let SomeRenderDialog = () => <Dialogs state={props.appState} />
-    let SomeRenderProfile = () => <Profile state={props.appState} />
+    debugger
+
+    let SomeRenderDialog = () => <Dialogs state={props.appState}  addPost={props.addPost}/>
+    let SomeRenderProfile = () => <Profile state={props.appState}   addPost={props.addPost}/>
 
 
     return (
