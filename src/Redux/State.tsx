@@ -1,13 +1,31 @@
-import { renderTree } from ".."
+import {renderTree} from '..';
+
+export type DialogPageType = {
+
+    messagesData: Array<MessageType>,
+    dialogsData: Array<DialogMessageType>
+
+}
+
+export type DialogMessageType = {
+    id: number
+    name: string
+}
+export type MessageType = {
+    id: number
+    message: string
+
+}
+
+export type ProfilePageType = {
+    postsData: Array<PostType>
+    newPostText: string
+}
 
 export type StateType = {
-    profilePage: {
-        postsData: Array<{ id: number, message: string, likesCount: number }>
-    }
-    messagesPage: {
-        messagesData: Array<{ id: number, message: string }>,
-        dialogsData: Array<{ id: number, name: string }>
-    }
+    profilePage: ProfilePageType
+
+    messagesPage: DialogPageType
 
 }
 
@@ -15,8 +33,8 @@ export type PostType = {
     id: number
     message: string
     likesCount: number
-}
 
+}
 
 let State: StateType = {
 
@@ -25,6 +43,8 @@ let State: StateType = {
             {id: 1, message: 'Love dogs', likesCount: 0},
             {id: 2, message: 'It s my first post', likesCount: 23},
         ],
+        newPostText: '',
+
     },
 
     messagesPage: {
@@ -42,18 +62,27 @@ let State: StateType = {
             {id: 6, name: 'Gena'},
 
         ],
-    }
+    },
+
 
 }
 
-export const addPost = (postText: string ) => {
-    debugger
+
+export const addPost = (postText: string) => {
+
+
     const newPost: PostType = {
         id: new Date().getTime(),
-        message: postText != null ? postText:'----',
+        message: postText != null ? postText : '----',
         likesCount: 0
     }
     State.profilePage.postsData.push(newPost);
+    renderTree(State)
+}
+
+
+export let UpdateNewPostText = (text: string) => {
+    State.profilePage.newPostText = text
     renderTree(State)
 }
 
