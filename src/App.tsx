@@ -5,26 +5,26 @@ import Navbar from './Component/Navbar/Navbar';
 import {Profile} from './Component/Profile/Profile';
 import Dialogs from "./Component/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {StateType} from "./Redux/State";
+import store, {StateType, StoreType} from "./Redux/State";
+
 
 
 export type StatePropsType = {
     appState: StateType
     addPost: (message: string) => void
     newPostText: (text: string) => void
-
-
+    store: StoreType
 }
 
-
 const App = (props: StatePropsType) => {
+
 
 
     let SomeRenderDialog = () => <Dialogs state={props.appState}
                                           addPost={props.addPost}/>
     let SomeRenderProfile = () => <Profile state={props.appState.profilePage}
-                                           addPost={props.addPost}
-                                           newPostText={props.newPostText}/>
+                                           addPost={props.store.addPost.bind(props.store)}
+                                           newPostText={props.store.UpdateNewPostText.bind(props.store)}/>
 
 
     return (
