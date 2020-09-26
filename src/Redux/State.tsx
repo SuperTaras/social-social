@@ -3,9 +3,25 @@ export type StoreType = {
     UpdateNewPostText: (text: string) => void
     addPost: (text: string) => void
     _renderTree: () => void
-    subscribe: (callback: (fn:any) => void) => void
+    subscribe: (callback: (fn: any) => void) => void
     getState: () => StateType
+    dispatch: (action: ActionsTypes) => void
 }
+
+
+type AddPostActionType = {
+    type: 'ADD-POST',
+    postText: string
+}
+type UpdateNewPostTextType = {
+    type: 'UPDATE-NEW-POST-TEXT',
+    text: string
+}
+
+
+export type ActionsTypes =
+    AddPostActionType | UpdateNewPostTextType
+
 
 const store: StoreType = {
 
@@ -38,13 +54,16 @@ const store: StoreType = {
         },
 
     },
+    _renderTree() {
+        console.log('hello bro')
+    },
     UpdateNewPostText(text: string) {
-        debugger
+
         this._State.profilePage.newPostText = text
         this._renderTree()
     },
     addPost(postText: string) {
-        debugger
+
         const newPost: PostType = {
             id: new Date().getTime(),
             message: postText != null ? postText : '----',
@@ -54,18 +73,31 @@ const store: StoreType = {
         this._State.profilePage.newPostText = ''
         this._renderTree()
     },
-    _renderTree() {
-        console.log('hello bro')
-    },
-    subscribe(callback:any) {
+    subscribe(callback: any) {
         this._renderTree = callback
     },
     getState() {
         debugger
         return this._State;
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+
+            const newPost: PostType = {
+                id: new Date().getTime(),
+                message: action.postText != null ? action.postText : '----',
+                likesCount: 0
+            }
+            this._State.profilePage.postsData.push(newPost);
+            this._State.profilePage.newPostText = ''
+            this._renderTree()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+
+            this._State.profilePage.newPostText = action.text
+            this._renderTree()
+        }
     }
 }
-
 
 
 export type DialogPageType = {
@@ -82,7 +114,6 @@ export type DialogMessageType = {
 export type MessageType = {
     id: number
     message: string
-
 }
 
 export type ProfilePageType = {
@@ -101,7 +132,6 @@ export type PostType = {
     id: number
     message: string
     likesCount: number
-
 }
 
 

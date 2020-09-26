@@ -7,15 +7,14 @@ import {StateType} from './Redux/State';
 import store from "./Redux/State";
 
 
-export let renderTree = (state:StateType) => {
-debugger
+export let renderTree = (state: StateType) => {
+
     ReactDOM.render(
         <React.StrictMode>
             <App
-                 appState={store._State}
-                 addPost={store.addPost}
-                 newPostText={store.UpdateNewPostText}
-                 store={store}
+                appState={store._State}
+                dispatch={store.dispatch.bind(store)}
+                store={store}
             />
         </React.StrictMode>,
         document.getElementById('root')

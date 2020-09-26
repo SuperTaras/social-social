@@ -7,8 +7,6 @@ import {StateType} from "../../Redux/State";
 
 export type DialogsPropsType = {
     state: StateType
-    addPost: (message: string) => void
-
 }
 
 
